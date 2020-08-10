@@ -29,6 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
 
     ul {
         padding: 0;
@@ -63,6 +64,7 @@ body {
             cursor: pointer;
             color: black !important;
             transition: transform .3s ease;
+            user-select: none;
 
             &:hover {
                 transform: scale(1.3);
