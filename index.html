@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <script src="./script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
-    
+    <div class="todo-wrapper">
+        <h1 class="todo-heading">Todo List</h1>
+        <div class="todo-input">
+            <input type="text" placeholder="Enter your task">
+            <div class="todo-add-wrapper">
+                <a href="#" class="btn todo-add">Add Task</a>
+            </div>
+        </div>
+        <div class="todo-items">
+            <ul>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li>
+                <li>Item <div class="delete-complete-wrapper"><span class="item-complete">&#10003;</span><span class="item-delete">&times;</span></div></li> 
+            </ul>
+        </div>
+        <div class="clear-all-wrapper">
+            <a href="#" class="btn clear-all">Clear All Tasks</a>
+        </div>
+    </div>
 </body>
 </html>
