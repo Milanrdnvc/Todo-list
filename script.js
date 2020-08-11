@@ -1,10 +1,12 @@
 const input = document.querySelector('input');
 const ul = document.querySelector('ul');
 const addTodoBtn = document.querySelector('.todo-add');
+const clearAllBtn = document.querySelector('.clear-all');
 let itemDeleteButton;
 let itemCompleteButton;
 
 loadItemsFromLocalStorage();
+clearAllBtn.addEventListener('click', deleteAllItems);
 input.addEventListener('keydown', addItemFromInput);
 addTodoBtn.addEventListener('click', addItemFromInput);
 
@@ -48,7 +50,7 @@ function loadItemsFromLocalStorage() {
             if (JSON.parse(localStorage.getItem('todoList'))[i].done) {
                 li.style.color = 'green';
             }
-            
+
             ul.appendChild(li);
         }
 
@@ -85,4 +87,12 @@ function completeItem(cmpBtn) {
             }
         }
     });
+}
+
+function deleteAllItems() {
+    itemDeleteButton.forEach(btn => {
+        btn.parentNode.parentNode.remove();
+    });
+
+    localStorage.removeItem('todoList');
 }
