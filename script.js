@@ -2,6 +2,7 @@ const input = document.querySelector('input');
 const ul = document.querySelector('ul');
 const addTodoBtn = document.querySelector('.todo-add');
 let itemDeleteButton;
+let itemCompleteButton;
 
 loadItemsFromLocalStorage();
 input.addEventListener('keydown', addItemFromInput);
@@ -26,14 +27,16 @@ function appendToDOMAndLS(inputValue) {
     }
 
     itemDeleteButton = document.querySelectorAll('.item-delete');
+    itemCompleteButton = document.querySelectorAll('.item-complete');
     deleteItem(itemDeleteButton);
+    completeItem(itemCompleteButton);
 }
 
 function addItemFromInput(e) {
     if ((e.key === 'Enter' || e.target.classList[1] === 'todo-add') && input.value !== '') {
         appendToDOMAndLS(input.value);
         input.value = '';
-    } else return;
+    } 
 }
 
 function loadItemsFromLocalStorage() {
@@ -42,11 +45,17 @@ function loadItemsFromLocalStorage() {
             let li = document.createElement('li');
             li.innerHTML = JSON.parse(localStorage.getItem('todoList'))[i].content;
             li.id = JSON.parse(localStorage.getItem('todoList'))[i].id;
+            if (JSON.parse(localStorage.getItem('todoList'))[i].done) {
+                li.style.color = 'green';
+            }
+            
             ul.appendChild(li);
         }
 
         itemDeleteButton = document.querySelectorAll('.item-delete');
+        itemCompleteButton = document.querySelectorAll('.item-complete');
         deleteItem(itemDeleteButton);
+        completeItem(itemCompleteButton);
     }
 }
 
@@ -59,6 +68,20 @@ function deleteItem(delBtn) {
                 todoArray.splice(index, 1);
                 localStorage.setItem('todoList', JSON.stringify(todoArray));
                 btn.parentNode.parentNode.remove();
+            }
+        }
+    });
+}
+
+function completeItem(cmpBtn) {
+    cmpBtn.forEach(btn => {
+        if (!btn.onclick) {
+            btn.onclick = function() {
+                let todoArray = JSON.parse(localStorage.getItem('todoList'));
+                let index = todoArray.findIndex(i => String(i.id) === String(btn.parentNode.parentNode.id));
+                todoArray[index].done = true;
+                localStorage.setItem('todoList', JSON.stringify(todoArray));
+                btn.parentNode.parentNode.style.color = 'green';
             }
         }
     });
