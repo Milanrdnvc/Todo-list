@@ -23,9 +23,9 @@ function appendToDOMAndLS(inputValue) {
     if (!localStorage.getItem('todoList')) {
         localStorage.setItem('todoList', JSON.stringify([{content: li.innerHTML, id: ID, done: false}]));
     } else {
-        let oldList = JSON.parse(localStorage.getItem('todoList'));
-        oldList.push({content: li.innerHTML, id: ID, done: false});
-        localStorage.setItem('todoList', JSON.stringify(oldList));
+        let todoArray = JSON.parse(localStorage.getItem('todoList'));
+        todoArray.push({content: li.innerHTML, id: ID, done: false});
+        localStorage.setItem('todoList', JSON.stringify(todoArray));
     }
 
     itemDeleteButton = document.querySelectorAll('.item-delete');
