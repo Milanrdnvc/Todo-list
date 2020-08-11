@@ -43,6 +43,10 @@ function addItemFromInput(e) {
 
 function loadItemsFromLocalStorage() {
     if (localStorage.getItem('todoList')) {
+        if (ul.querySelector('li')) {
+            ul.querySelectorAll('li').forEach(li => li.remove());
+        }
+        
         for (let i = 0; i < JSON.parse(localStorage.getItem('todoList')).length; i++) {
             let li = document.createElement('li');
             li.innerHTML = JSON.parse(localStorage.getItem('todoList'))[i].content;
